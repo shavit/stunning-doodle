@@ -12,8 +12,6 @@ defmodule GeniusApiTest do
   Build a URL to the API endpoint with params
   """
   test "should build a URL" do
-    url = GeniusApi.build_url('/', params) != None
-    IO.inspect url
-
+    assert GeniusApi.build_url('/', params) != None
   end
 end

@@ -19,6 +19,8 @@ defmodule GeniusApiTest do
   Search the api for an artist
   """
   test "should search for an artist" do
-    assert GeniusApi.search("Michael Jackson") != None
+    res = GeniusApi.search("Michael Jackson")
+    IO.inspect res
+    assert res != None
   end
 end

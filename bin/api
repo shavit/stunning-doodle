@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# $1 full URL
+url=$1
+
+curl -G $url \
+-H "Authorization: Bearer ${GENIUS_ACCESS_TOKEN}" \
+-H "User-Agent: ShavitTzuriel (https://github.com/shavit/stunning-doodle)" \
+-H "Accept: application/json" \

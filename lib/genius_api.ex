@@ -39,16 +39,20 @@ defmodule GeniusApi do
 
   def artist_search(name) do
     url = build_url("/search?", %{"q" => name})
-    IO.inspect System.cmd(System.cwd<>"/bin/api", [url])
+    System.cmd(System.cwd<>"/bin/api", [url])
   end
 
   def artist_load(id) do
     url = build_url("/artists/#{id}", %{})
-    IO.inspect System.cmd(System.cwd<>"/bin/api", [url])
+    {res_data, status} = System.cmd(System.cwd<>"/bin/api", [url])
+    {:ok, artist_data} = JSX.decode(res_data)
+
+    artist = artist_data["response"]["artist"]
   end
 
   def artist_songs(id) do
     url = build_url("/artists/#{id}/songs", %{})
-    IO.inspect System.cmd(System.cwd<>"/bin/api", [url])
+    {res_data, status} = System.cmd(System.cwd<>"/bin/api", [url])
+    {:ok, songs_data} = JSX.decode(res_data)
   end
 end

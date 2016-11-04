@@ -21,6 +21,12 @@ use Mix.Config
 #     config :logger, level: :info
 #
 
+# For the database
+config :genius_api, ecto_repos: [GeniusApi.Repo]
+config :genius_api, GeniusApi.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: System.get_env("DATABASE_URL")
+
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
 # by uncommenting the line below and defining dev.exs, test.exs and such.

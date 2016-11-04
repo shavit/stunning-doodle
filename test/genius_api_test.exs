@@ -42,6 +42,7 @@ defmodule GeniusApiTest do
   Load artist songs from the API
   """
   test "should load songs of an artist from the API" do
-    assert GeniusApi.artist_songs("130") != None
+    {:ok, songs_data} = GeniusApi.artist_songs("130")
+    assert songs_data["response"]["songs"] != None
   end
 end

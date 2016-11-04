@@ -10,13 +10,7 @@ defmodule GeniusApi.Storage do
       select: artist
 
     Repo.all(query)
-    uid
   end
-
-  # uery = from w in Weather,
-  #        where: w.prcp > 0 or is_nil(w.prcp),
-  #        select: w
-  #   Repo.all(query)
 
   @doc """
 

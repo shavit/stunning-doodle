@@ -66,12 +66,18 @@ defmodule GeniusApi do
     {res_data, status} = System.cmd(System.cwd<>"/bin/api", [url])
     {:ok, artist_data} = JSX.decode(res_data)
 
+    GeniusApi.Writer.write_result(artist_data, System.cwd<>"/tmp/artist-#{id}.json")
+
     artist = artist_data["response"]["artist"]
   end
 
-  def artist_songs(id) do
-    url = build_url("/artists/#{id}/songs", %{})
+  def artist_songs(id, page \\ "1") do
+    url = build_url("/artists/#{id}/songs?", %{"per_page" => "50", "page" => page})
     {res_data, status} = System.cmd(System.cwd<>"/bin/api", [url])
     {:ok, songs_data} = JSX.decode(res_data)
+
+    # GeniusApi.Writer.write_result(songs_data, System.cwd<>"/tmp/artist-#{id}-songs.json")
+
+    songs_data
   end
 end

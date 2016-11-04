@@ -1,11 +1,22 @@
 defmodule GeniusApi.Storage do
 
   import Ecto.Query
-  # alias GeniusApi.Repo
+  alias GeniusApi.Repo
+  alias GeniusApi.Artist
 
-  def artist_exists(artist_name) do
-    artist_name
+  def artist_exists(uid) do
+    query = from artist in Artist,
+      where: artist.uid == ^uid,
+      select: artist
+
+    Repo.all(query)
+    uid
   end
+
+  # uery = from w in Weather,
+  #        where: w.prcp > 0 or is_nil(w.prcp),
+  #        select: w
+  #   Repo.all(query)
 
   @doc """
 

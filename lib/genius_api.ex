@@ -36,4 +36,19 @@ defmodule GeniusApi do
     # :edoc_lib.escape_uri(term)
     request("/search?", %{"q" => term})
   end
+
+  def artist_search(name) do
+    url = build_url("/search?", %{"q" => name})
+    IO.inspect System.cmd(System.cwd<>"/bin/api", [url])
+  end
+
+  def artist_load(id) do
+    url = build_url("/artists/#{id}", %{})
+    IO.inspect System.cmd(System.cwd<>"/bin/api", [url])
+  end
+
+  def artist_songs(id) do
+    url = build_url("/artists/#{id}/songs", %{})
+    IO.inspect System.cmd(System.cwd<>"/bin/api", [url])
+  end
 end
